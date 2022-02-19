@@ -23,7 +23,7 @@ class ExchangeCurrencyController extends Controller
         } catch (\Exception $exception) {
             return response()->json([
                 'message' =>  $exception->getMessage(),
-            ], 404);
+            ], 400);
         }
     }
 }

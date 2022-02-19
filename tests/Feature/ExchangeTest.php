@@ -43,7 +43,7 @@ class ExchangeTest extends TestCase
             'target_currency' => 'TWD',
             'amount' => 10001,
         ]);
-        $response->assertStatus(404);
+        $response->assertStatus(400);
         $result = $response->json();
         $this->assertSame('Source Currency Not Found.', $result['message']);
 
@@ -52,7 +52,7 @@ class ExchangeTest extends TestCase
             'target_currency' => 'XXX',
             'amount' => 10001,
         ]);
-        $response->assertStatus(404);
+        $response->assertStatus(400);
         $result = $response->json();
         $this->assertSame('Target Currency Not Found.', $result['message']);
     }
