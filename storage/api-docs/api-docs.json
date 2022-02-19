@@ -1,0 +1,103 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "For Asia Yo",
+        "description": "匯率轉換器",
+        "contact": {
+            "email": "lcrob55@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/exchange": {
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "轉換匯率",
+                "description": "轉換匯率至小數點後兩位",
+                "operationId": "0d50ddcdee0311e6b9f822e3f48a72d2",
+                "parameters": [
+                    {
+                        "name": "source_currency",
+                        "in": "query",
+                        "description": "使用幣別",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "traget_currency",
+                        "in": "query",
+                        "description": "兌換幣別",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "amount",
+                        "in": "query",
+                        "description": "兌換金額",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        ""
+                                    ],
+                                    "properties": {
+                                        "result": {
+                                            "description": "兌換結果",
+                                            "type": "string",
+                                            "example": "1,000.00"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "result": "1,000.00"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        ""
+                                    ],
+                                    "properties": {
+                                        "message": {
+                                            "description": "找不到要兌換的幣別",
+                                            "type": "string",
+                                            "example": "Target Currency Not Found."
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "message": "Target Currency Not Found."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
