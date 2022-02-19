@@ -6,6 +6,9 @@ use phpDocumentor\Reflection\Types\Integer;
 
 class ExchangeService
 {
+    /**
+     * @var array
+     */
     protected $currencyMap;
 
     public function __construct(LoadCurrencyInterface $getCurrencyService)
