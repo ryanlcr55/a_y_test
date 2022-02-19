@@ -1,0 +1,33 @@
+version: '3'
+services:
+    # Web server
+    nginx:
+        image: nginx:mainline
+        restart: unless-stopped
+        ports:
+            - "8089:80"
+        volumes:
+            - app_volum:/var/www
+            - ./.docker/nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+            - app-network
+    #PHP Service
+    app:
+        build: ./
+        restart: unless-stopped
+        tty: true
+        volumes:
+            - app_volum:/var/www
+        networks:
+            - app-network
+        environment:
+            - APP_KEY=
+            - DB_DATABASE=laravel
+            - DB_USERNAME=root
+            - DB_PASSWORD=root
+networks:
+    app-network:
+        driver: bridge
+volumes:
+    app_volum:
+        driver: local
